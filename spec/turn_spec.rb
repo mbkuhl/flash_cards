@@ -18,7 +18,7 @@ RSpec.describe Card do
   it 'can be correct' do
     turn = Turn.new("Juneau", card)
 
-    expect(turn.corect?).to be true
+    expect(turn.correct?).to be true
     expect(turn.feedback).to eq("Correct!")
   end
 
@@ -26,7 +26,7 @@ RSpec.describe Card do
     turn = Turn.new("Fairbanks", card)
 
     expect(turn.correct?).to be false
-    expect(turn.feedback).to eq("incorrect.")
+    expect(turn.feedback).to eq("Incorrect.")
   end
 
 end
