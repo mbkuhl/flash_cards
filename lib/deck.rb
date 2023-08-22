@@ -11,7 +11,7 @@ class Deck
   end
 
   def cards_in_category(category)
-    cards.map do |card|
+    cards.select do |card|
       card.category == category
     end
   end

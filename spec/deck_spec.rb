@@ -28,6 +28,4 @@ RSpec.describe Deck do
     expect(deck.cards_in_category_count("Pop Culture")).to eq(0)
   end
 
-
-
 end
