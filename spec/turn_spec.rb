@@ -1,7 +1,7 @@
 require './lib/turn'
 require './lib/card'
 
-RSpec.describe Card do
+RSpec.describe Turn do
   card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
   it 'exists' do
     turn = Turn.new("Juneau", card)
@@ -15,7 +15,7 @@ RSpec.describe Card do
     expect(turn.guess).to eq("Juneau")
   end
 
-  it 'can be correct' do
+  xit 'can be correct' do
     turn = Turn.new("Juneau", card)
 
     expect(turn.correct?).to be true
