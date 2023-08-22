@@ -23,9 +23,9 @@ RSpec.describe Deck do
   it 'can tell how many cards are in each category' do
     deck = Deck.new(cards)
 
-    expect(deck.cards_in_category(:STEM)).to eq(2)
-    expect(deck.cards_in_category(:Geography)).to eq(1)
-    expect(deck.cards_in_category("Pop Culture")).to eq(0)
+    expect(deck.cards_in_category_count(:STEM)).to eq(2)
+    expect(deck.cards_in_category_count(:Geography)).to eq(1)
+    expect(deck.cards_in_category_count("Pop Culture")).to eq(0)
   end
 
 
