@@ -94,6 +94,41 @@ RSpec.describe Round do
     expect(round.turns.last.feedback).to eq("Incorrect.")
   end
 
+  it 'can find number of correct answers by category' do
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    round = Round.new(deck)
+
+    expect(round.number_correct_by_category(:Geography)).to eq(0)
+    expect(round.number_correct_by_category(:STEM)).to eq(0)
+    round.take_turn("Juneau")
+    expect(round.number_correct_by_category(:Geography)).to eq(1)
+    expect(round.number_correct_by_category(:STEM)).to eq(0)
+    round.take_turn("Venus")
+    expect(round.number_correct_by_category(:Geography)).to eq(1)
+    expect(round.number_correct_by_category(:STEM)).to eq(0)
+    round.take_turn("North north west")
+    expect(round.number_correct_by_category(:Geography)).to eq(1)
+    expect(round.number_correct_by_category(:STEM)).to eq(1)
+  end
+
+  it 'can find number of correct answers by category' do
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    round = Round.new(deck)
+
+    expect(round.percent_correct_by_category(:Geography)).to eq("No questions answered in this category yet")
+    expect(round.percent_correct_by_category(:STEM)).to eq("No questions answered in this category yet")
+    round.take_turn("Juneau")
+    expect(round.percent_correct_by_category(:Geography)).to eq("100%")
+    expect(round.percent_correct_by_category(:STEM)).to eq("No questions answered in this category yet")
+    round.take_turn("Venus")
+    expect(round.percent_correct_by_category(:Geography)).to eq("100%")
+    expect(round.percent_correct_by_category(:STEM)).to eq("0%")
+    round.take_turn("North north west")
+    expect(round.percent_correct_by_category(:Geography)).to eq("100%")
+    expect(round.percent_correct_by_category(:STEM)).to eq("50%")
+  end
  
 
 end
