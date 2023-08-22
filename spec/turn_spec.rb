@@ -10,8 +10,23 @@ RSpec.describe Card do
   end
 
   it 'has a guess' do
-      turn = Turn.new("Juneau", card)
+    turn = Turn.new("Juneau", card)
     
-      expect(turn.guess).to eq("Juneau")
+    expect(turn.guess).to eq("Juneau")
   end
+
+  it 'can be correct' do
+    turn = Turn.new("Juneau", card)
+
+    expect(turn.corect?).to be true
+    expect(turn.feedback).to eq("Correct!")
+  end
+
+  it 'can be incorrect' do
+    turn = Turn.new("Fairbanks", card)
+
+    expect(turn.correct?).to be false
+    expect(turn.feedback).to eq("incorrect.")
+  end
+
 end
