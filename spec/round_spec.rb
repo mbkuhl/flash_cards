@@ -65,17 +65,33 @@ RSpec.describe Round do
     expect(round.turns).to eq([new_turn])
   end
 
-  it 'can store number of correct answers' do
+  it 'can store number of turns and number of correct answers' do
+    cards = [card1, card2, card3]
+    deck = Deck.new(cards)
+    round = Round.new(deck)
+
+    expect(round.turns.count).to eq(0)
+    expect(round.number_correct).to eq(0)
+    round.take_turn("Juneau")
+    expect(round.turns.count).to eq(1)
+    expect(round.number_correct).to eq(1)
+    round.take_turn("Venus")
+    expect(round.turns.count).to eq(2)
+    expect(round.number_correct).to eq(1)
+    round.take_turn("North north west")
+    expect(round.turns.count).to eq(3)
+    expect(round.number_correct).to eq(2)
+  end
+
+  it 'can get feedback from turns taken' do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     round = Round.new(deck)
 
     round.take_turn("Juneau")
-    expect(round.number_correct).to eq(1)
+    expect(round.turns.last.feedback).to eq("Correct!")
     round.take_turn("Venus")
-    expect(round.number_correct).to eq(1)
-    round.take_turn("North north west")
-    expect(round.number_correct).to eq(2)
+    expect(round.turns.last.feedback).to eq("Incorrect.")
   end
 
  
