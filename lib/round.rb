@@ -1,7 +1,7 @@
 require './lib/turn'
 
 class Round
-  attr_accessor :deck, :turns, :turn_count,:number_correct
+  attr_accessor :deck, :turns, :turn_count,:number_correct, :initial_card_count
   def initialize(deck)
     @deck = deck
     @turns = []
@@ -9,6 +9,7 @@ class Round
     @turn_count
     @current_card
     @number_correct = 0
+    @initial_card_count = @deck.cards.count
   end
 
   def current_card
@@ -34,6 +35,16 @@ class Round
   def number_correct_by_category(category)
     @correct.count do |turn|
       turn.card.category == category
+    end
+  end
+
+  def percent_correct
+    correct = self.number_correct
+    total = @initial_card_count
+    if total > 0
+      "#{((correct.to_f) / (total.to_f)*100).to_i}%"
+    else
+      "No questions answered yet"
     end
   end
 
