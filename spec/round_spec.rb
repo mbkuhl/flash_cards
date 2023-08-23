@@ -112,7 +112,7 @@ RSpec.describe Round do
     expect(round.number_correct_by_category(:STEM)).to eq(1)
   end
 
-  it 'can find number of correct answers by category' do
+  it 'can find percent of correct answers by category' do
     cards = [card1, card2, card3]
     deck = Deck.new(cards)
     round = Round.new(deck)
