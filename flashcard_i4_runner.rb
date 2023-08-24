@@ -13,6 +13,12 @@ card_array.each do |card|
   cards << card_instance
 end
 
+all_categories = cards.map do |card|
+  card.category
+end
+
+new_categories = all_categories.uniq()
+
 deck = Deck.new(cards)
 
 round = Round.new(deck)
@@ -31,12 +37,12 @@ def start(round)
     round.take_turn(answer)
     puts round.turns.last.feedback
   end
-
-  puts "****** Game over! ******"
-  puts "You had #{round.number_correct} correct guesses out of #{round.initial_card_count} for a total score of #{round.percent_correct}."
-  puts "STEM - #{round.percent_correct_by_category("STEM")} correct"
-  puts "Geography - #{round.percent_correct_by_category("Geography")} correct"
-  puts "Pop Culture - #{round.percent_correct_by_category("Pop Culture")} correct"
 end
 
 start(round)
+
+puts "****** Game over! ******"
+puts "You had #{round.number_correct} correct guesses out of #{round.initial_card_count} for a total score of #{round.percent_correct}."
+new_categories.each do |category|
+  puts "#{category} - #{round.percent_correct_by_category(category)} correct"
+end
